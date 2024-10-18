@@ -11,7 +11,12 @@ export default defineConfig({
     host_permissions: ["https://*.linkedin.com/*"],
     web_accessible_resources: [
       {
-        resources: ["assets/ai-icon.svg"],
+        resources: [
+          "assets/ai-icon.svg",
+          "assets/insert.svg",
+          "assets/regenerate.svg",
+          "assets/send.svg",
+        ],
         matches: ["https://*.linkedin.com/*"],
       },
     ],
