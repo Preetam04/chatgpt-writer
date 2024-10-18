@@ -1,4 +1,7 @@
+import renderModal from "@/entrypoints/ui";
 import icon from "../assets/ai-icon.svg";
+import ReactDOM from "react-dom/client";
+import React from "react";
 
 export default defineContentScript({
   matches: ["https://*.linkedin.com/*"],
@@ -7,11 +10,11 @@ export default defineContentScript({
     console.log("Hello content.");
     let dataField: Element | null = null;
 
+    // const appendButton = () => {}
+
     const getDataField = () => {
       const ele = document.getElementsByClassName("msg-form__contenteditable");
       dataField = ele[0];
-      // console.log(ele[0]);
-
       // created button, TODO: figure out if there is a way to write this style in tailwind(Not find till yet)
       const button = document.createElement("button");
       const img = document.createElement("img");
@@ -28,9 +31,17 @@ export default defineContentScript({
       button.style.bottom = "1rem";
 
       button.append(img);
+      const modalRoot = document.createElement("div");
+      modalRoot.id = "react-modal-root";
+      document.body.appendChild(modalRoot);
+      // button.onclick = () => {
+
+      // };
 
       button.addEventListener("click", () => {
         console.log("Button clicked!");
+        const item = document.getElementById("react-modal-root");
+        renderModal(modalRoot);
       });
 
       dataField.appendChild(button);
@@ -40,7 +51,7 @@ export default defineContentScript({
       // console.log("Message received from background:", message);
 
       if (message.type === "MESSAGE_THREAD_DETECTED") {
-        console.log("LinkedIn messaging thread detected!");
+        // console.log("LinkedIn messaging thread detected!");
 
         getDataField();
         sendResponse({
@@ -50,12 +61,11 @@ export default defineContentScript({
         console.log("there was some error", chrome.runtime.lastError);
       }
 
-      // Return true if you have asynchronous code and want to keep the message channel open
       return true;
     });
 
     // getEle();
-    console.log(dataField);
+    // console.log(dataField);
   },
 });
 

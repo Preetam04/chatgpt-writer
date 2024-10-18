@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "@/assets/react.svg";
 import wxtLogo from "/wxt.svg";
 import "./App.css";
+import Button from "@/components/Button";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,6 +26,7 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> small change
         </p>
+        {/* <Button /> */}
       </div>
       <p className="read-the-docs">
         Click on the WXT and React logos to learn more
