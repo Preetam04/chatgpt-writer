@@ -8,15 +8,14 @@ export default defineContentScript({
   runAt: "document_end",
   main() {
     console.log("Hello content.");
-    let dataField: Element | null = null;
 
     // const appendButton = () => {}
 
     const getDataField = () => {
-      const ele = document.getElementsByClassName(
+      const dataField = document.getElementsByClassName(
         "msg-form__msg-content-container--scrollable"
-      );
-      dataField = ele[0];
+      )[0];
+
       // created button, TODO: figure out if there is a way to write this style in tailwind(Not find till yet)
       const button = document.createElement("button");
       const img = document.createElement("img");
@@ -37,12 +36,8 @@ export default defineContentScript({
       modalRoot.id = "react-modal-root";
       document.body.appendChild(modalRoot);
 
-      // let flag = false;
-      // let root = ReactDOM.createRoot(modalRoot);
-
       button.addEventListener("click", () => {
         console.log("Button clicked!");
-        // renderModal(root);
         renderModal(modalRoot);
       });
 
@@ -53,8 +48,6 @@ export default defineContentScript({
       // console.log("Message received from background:", message);
 
       if (message.type === "MESSAGE_THREAD_DETECTED") {
-        // console.log("LinkedIn messaging thread detected!");
-
         getDataField();
         sendResponse({
           status: "Message received and processed in content script",
@@ -65,8 +58,5 @@ export default defineContentScript({
 
       return true;
     });
-
-    // getEle();
-    // console.log(dataField);
   },
 });
