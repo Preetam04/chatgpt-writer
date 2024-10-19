@@ -34,23 +34,26 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   };
 
   const onRegenerate = () => {
-    setPrompt("");
-    setContentGenerated((prev) => !prev);
+    // setPrompt("");
+    // setContentGenerated((prev) => !prev);
   };
 
   const onInsert = () => {
     const ele = document.getElementsByClassName("msg-form__contenteditable")[0];
     const contentHolder = ele.querySelector("p");
+    // console.log(contentHolder);
 
     contentHolder.innerText =
       "Thank you for the opportunity! If you have any more questions or if there's anything else I can help you with, feel free to ask.";
+
     const placeholder = document.getElementsByClassName(
       "msg-form__placeholder"
     )[0];
     // placeholder
     // console.log(placeholder);
-
-    placeholder.classList.remove("msg-form__placeholder");
+    if (placeholder) {
+      placeholder.classList.remove("msg-form__placeholder");
+    }
 
     const button = document.getElementsByClassName("msg-form__send-button")[0];
     // console.log(button);
