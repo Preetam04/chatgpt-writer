@@ -1,10 +1,8 @@
-import "./App.css";
-
 function App() {
   return (
     <>
-      <div className="flex items-center justify-center capitalize w-full max-w-96">
-        <h1 className="text-sm ">
+      <div className="flex items-center justify-center capitalize w-64 bg-gray-800 p-4 text-white ">
+        <h1 className="text-sm font-normal">
           Please Open Your{" "}
           <span className="text-blue-600 font-semibold">Linkedin</span> Messages
           to use the extension
