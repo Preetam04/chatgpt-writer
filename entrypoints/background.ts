@@ -10,7 +10,7 @@ export default defineBackground(() => {
         currentTab.id &&
         currentTab.url?.includes("linkedin.com/messaging/thread")
       ) {
-        console.log(currentTab.url);
+        // console.log(currentTab.url);
 
         chrome.tabs.sendMessage(
           currentTab.id,

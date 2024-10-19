@@ -13,7 +13,9 @@ export default defineContentScript({
     // const appendButton = () => {}
 
     const getDataField = () => {
-      const ele = document.getElementsByClassName("msg-form__contenteditable");
+      const ele = document.getElementsByClassName(
+        "msg-form__msg-content-container--scrollable"
+      );
       dataField = ele[0];
       // created button, TODO: figure out if there is a way to write this style in tailwind(Not find till yet)
       const button = document.createElement("button");
@@ -21,6 +23,7 @@ export default defineContentScript({
       img.src = icon;
       img.alt = "click";
 
+      button.appendChild(img);
       button.style.backgroundColor = "#fff";
 
       button.style.padding = "0.5rem";
@@ -30,17 +33,16 @@ export default defineContentScript({
       button.style.right = "1rem";
       button.style.bottom = "1rem";
 
-      button.append(img);
       const modalRoot = document.createElement("div");
       modalRoot.id = "react-modal-root";
       document.body.appendChild(modalRoot);
-      // button.onclick = () => {
 
-      // };
+      // let flag = false;
+      // let root = ReactDOM.createRoot(modalRoot);
 
       button.addEventListener("click", () => {
         console.log("Button clicked!");
-        const item = document.getElementById("react-modal-root");
+        // renderModal(root);
         renderModal(modalRoot);
       });
 
@@ -68,59 +70,3 @@ export default defineContentScript({
     // console.log(dataField);
   },
 });
-
-//   const element = await document.getElementsByClassName(
-//     "msg-form__contenteditable"
-//   );
-//   if (element) {
-//     ele = element;
-//   }
-// };
-
-// function getEle() {
-//   const example = document.getElementsByClassName(
-//     "msg-form__contenteditable"
-//   );
-//   console.log("asdadasd");
-
-//   console.log(example[0]);
-// }
-
-// if (document.readyState !== "loading") {
-//   // document.addEventListener("DOMContentLoaded", () => {
-//   // });
-//   getEle();
-// }
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   console.log("DOM is ready, now waiting for the element...");
-// });
-
-// window.addEventListener("load", () => {
-//   // Manipulate the DOM here
-//   getEle();
-// });
-
-// console.log("Content script running on:", window.location.href);
-
-//
-
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-//   console.log("Received message:", message);
-//   sendResponse({ status: "Message received" });
-// });
-// console.log(chrome.runtime);
-
-//   chrome.runtime.onMessage.addListener(function (
-//     request,
-//     sender,
-//     sendResponse
-//   ) {
-//     console.log("Received message:", request, sender);
-//     if (request.type === "MESSAGE_THREAD_DETECTED") {
-//       sendResponse({ status: "Message received" });
-//     }
-//   });
-//   // chrome.runtime.
-
-// getEle();

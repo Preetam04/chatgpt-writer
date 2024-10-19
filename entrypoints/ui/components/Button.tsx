@@ -1,6 +1,3 @@
-import React from "react";
-import icon from "../assets/ai-icon.svg";
-
 // const button = () => {
 //   // Create the button element
 //   const button = document.createElement("button");
@@ -26,10 +23,32 @@ import icon from "../assets/ai-icon.svg";
 //   return button;
 // };
 
-const Button = () => {
+type BtnProps = {
+  icon?: string;
+  text: string;
+  variant: "primary" | "outline";
+  onClick: () => void;
+};
+
+const Button = ({ icon, text, variant, onClick }: BtnProps) => {
+  const btnVariant = {
+    primary:
+      "bg-blue-500 text-white px-6 py-3  flex items-center rounded-lg text-2xl font-normal gap-3",
+    outline:
+      "bg-white text-gray-500 px-6 py-3  flex items-center rounded-lg text-2xl font-normal gap-3 ring-[1px] ring-gray-500",
+  };
+
   return (
-    <button className="px-4 py-2 bg-blue-500 text-white border-none cursor-pointer mt-2 hover:bg-blue-700 transition-colors">
-      Click me
+    // <button className="px-4 py-2 bg-blue-500 text-white border-none cursor-pointer mt-2 hover:bg-blue-700 transition-colors">
+    <button
+      className={btnVariant[variant]}
+      onClick={() => {
+        onClick();
+      }}
+    >
+      {icon && <img src={icon} alt={`${text}-icon`} className="w-5 h-5" />}
+
+      {text}
     </button>
   );
 };

@@ -4,6 +4,7 @@ import { defineConfig } from "wxt";
 export default defineConfig({
   modules: ["@wxt-dev/module-react"],
   manifest: {
+    name: "Connect Linkedin",
     permissions: ["tabs", "activeTab", "scripting"],
     content_security_policy: {
       extension_pages: "script-src 'self'; object-src 'self'",
@@ -20,9 +21,10 @@ export default defineConfig({
         matches: ["https://*.linkedin.com/*"],
       },
     ],
+
+    // icons: {
+    //   16: "linkedin.svg",
+    // },
   },
   manifestVersion: 3,
-  // vite: () => ({
-  //   plugins: [react()],
-  // }),
 });
